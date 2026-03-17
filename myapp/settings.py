@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,15 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-i7w=*fv%wj^6b$4%+s(zl_*!ryd1igp)^##_mv0^&7fbvtxco0'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-i7w=*fv%wj^6b$4%+s(zl_*!ryd1igp)^##_mv0^&7fbvtxco0')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -77,15 +76,7 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'USER': 'root',
-        'PASSWORD': 'royh',
-        'HOST':'localhost',
-        'PORT':'3306',
-
-    }
+    'default': dj_database_url.config(default='postgresql://user:password@localhost:5432/blog')
 }
 
 
@@ -123,13 +114,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-
-
 STATIC_URL = 'static/'
-
-# STATICFILES_DIRS = [
-#     '/blog/static/blog/',
-# ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 
