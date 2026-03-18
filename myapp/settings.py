@@ -79,8 +79,6 @@ DATABASES = {
     )
 }
 
-# Use WhiteNoise for static file serving on platforms like Railway
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
