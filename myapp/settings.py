@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-local-fallback-key')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['web-production-198cf.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['blogapp-royhamlin.up.railway.app', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -114,7 +114,7 @@ USE_TZ = True
 
 
 # CSRF fix for Railway
-CSRF_TRUSTED_ORIGINS = ['https://web-production-198cf.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://blogapp-royhamlin.up.railway.app']
 
 # Static files
 STATIC_URL = '/static/'
